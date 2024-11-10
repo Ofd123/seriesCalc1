@@ -1,6 +1,10 @@
 package com.example.seriescalc;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +14,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity
 {
+    EditText startSeries, q;
+    Switch choice;
+    boolean multiply;
+    String startingSt,SeriesMUltiplayerSt;
+    int startingint,SeriesMultiplayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -23,5 +32,47 @@ public class MainActivity extends AppCompatActivity
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        choice = findViewById(R.id.option);
+        startSeries = findViewById(R.id.firstNum);
+        q = findViewById(R.id.commonRatio);
+
+    }
+
+
+
+    public void toggle(View view)
+    {
+        if (choice.isChecked())
+        {
+            Toast.makeText(this, "toggled to mathematical series", Toast.LENGTH_SHORT).show();
+            multiply = false;
+        }
+        else
+        {
+            Toast.makeText(this, "toggled to geometric series", Toast.LENGTH_SHORT).show();
+            multiply = true;
+        }
+    }
+
+    public void nextView(View view)
+    {
+        startingSt = startSeries.getText().toString();
+        SeriesMUltiplayerSt = q.getText().toString();
+        if(startingSt == null || startingSt.equals('+') || startingSt.equals('-') || startingSt.equals(' ') || startingSt.equals('.'))
+        {
+            Toast.makeText(this, "Enter a starting number", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else if(SeriesMUltiplayerSt == null || SeriesMUltiplayerSt.equals('+') || SeriesMUltiplayerSt.equals('-') || SeriesMUltiplayerSt.equals(' ') || SeriesMUltiplayerSt.equals('.'))
+        {
+            Toast.makeText(this, "Enter the Series multiplier/divider", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else
+        {
+            startingint = Integer.parseInt(startingSt);
+            SeriesMultiplayer = Integer.parseInt(SeriesMUltiplayerSt);
+        }
+
     }
 }
