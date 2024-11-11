@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity
     Switch choice;
     boolean multiply;
     String startingSt,SeriesMUltiplayerSt;
-    int startingint,SeriesMultiplayer;
+    double startingint,SeriesMultiplayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
