@@ -87,6 +87,7 @@ public class resultScreenActivity extends AppCompatActivity implements AdapterVi
         }
         location.setText("item's location: "+ (position+1));
         sumLocation.setText("sum of the first " + (position+1) + " items: "+ String.format("%.4f",totalForN));
+
     }
 
     public void returnToFirstView(View view)
