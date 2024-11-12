@@ -47,29 +47,28 @@ public class resultScreenActivity extends AppCompatActivity implements AdapterVi
 
         Intent getVal = getIntent();
         startingIndex = getVal.getDoubleExtra("startingNum",0);
-        multiplier = getVal.getDoubleExtra("SeriesMultiplier",0);
+        multiplier = getVal.getDoubleExtra("SeriesMultiplayer",1);
         multiply = getVal.getBooleanExtra("shouldMultiply",false);
 
         firstNum.setText("first number: " + Double.toString(startingIndex));
-        listQ.setText("common ratio: " + Double.toString(startingIndex));
+        listQ.setText("common ratio: " + Double.toString(multiplier));
+
 
         sum = startingIndex;
-        if(multiply)
+        for(int i = 0; i <20; i++)
         {
-            for(int i = 0; i<19;i++)
+            list[i] = String.format("%.4f",sum);
+            if(multiply)
             {
                 sum *= multiplier;
-                list[i] = Double.toString(startingIndex);
             }
-        }
-        else
-        {
-            for(int i = 0; i<19;i++)
+            else
             {
                 sum += multiplier;
-                list[i] = Double.toString(startingIndex);
             }
         }
+
+
 
         ArrayAdapter<String> listSt = new ArrayAdapter<String>(this,androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,list);
         showingList.setAdapter(listSt);
@@ -79,14 +78,19 @@ public class resultScreenActivity extends AppCompatActivity implements AdapterVi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
-        int totalForN = 0;
-        int tempNum = 0;
-        for(int i = 0; i < position; i++)
+        double totalForN = 0;
+        double tempNum = 0;
+        for(int i = 0; i <= position; i++)
         {
-            tempNum = Integer.parseInt(String.valueOf(list[i]));
+            tempNum = Double.parseDouble(String.valueOf(list[i]));
             totalForN += tempNum;
         }
-        location.setText("item's location: "+ position+1);
-        sumLocation.setText("sum of the first N items: "+ totalForN);
+        location.setText("item's location: "+ (position+1));
+        sumLocation.setText("sum of the first " + (position+1) + " items: "+ String.format("%.4f",totalForN));
+    }
+
+    public void returnToFirstView(View view)
+    {
+        finish();
     }
 }

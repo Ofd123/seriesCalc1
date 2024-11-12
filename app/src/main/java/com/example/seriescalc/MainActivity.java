@@ -45,13 +45,13 @@ public class MainActivity extends AppCompatActivity
     {
         if (choice.isChecked())
         {
-            Toast.makeText(this, "toggled to mathematical series", Toast.LENGTH_SHORT).show();
-            multiply = false;
+            Toast.makeText(this, "toggled to geometric series", Toast.LENGTH_SHORT).show();
+            multiply = true;
         }
         else
         {
-            Toast.makeText(this, "toggled to geometric series", Toast.LENGTH_SHORT).show();
-            multiply = true;
+            Toast.makeText(this, "toggled to mathematical series", Toast.LENGTH_SHORT).show();
+            multiply = false;
         }
     }
 
@@ -59,20 +59,21 @@ public class MainActivity extends AppCompatActivity
     {
         startingSt = startSeries.getText().toString();
         SeriesMUltiplayerSt = q.getText().toString();
-        if(startingSt == null || startingSt.equals("+") || startingSt.equals("-") || startingSt.equals(" ") || startingSt.equals(".") || startingSt.equals("+.") || startingSt.equals("-.") || startingSt.equals(" .") || startingSt.equals("+-") || startingSt.equals("-+") || startingSt.equals("+-.") || startingSt.equals("-+."))
+        if(startingSt == null || startingSt.equals("+") || startingSt.equals("-") || startingSt.equals(" ") || startingSt.equals(".") || startingSt.equals("+.") || startingSt.equals("-.") || startingSt.equals(" .") || startingSt.equals("+-") || startingSt.equals("-+") || startingSt.equals("+-.") || startingSt.equals("-+.") || startingSt.equals("") || startingSt.equals(" "))
         {
             Toast.makeText(this, "Enter a starting number", Toast.LENGTH_SHORT).show();
             return;
         }
-        else if(SeriesMUltiplayerSt == null || SeriesMUltiplayerSt.equals("+") || SeriesMUltiplayerSt.equals("-") || SeriesMUltiplayerSt.equals(" ") || SeriesMUltiplayerSt.equals(".") || SeriesMUltiplayerSt.equals("+.") || SeriesMUltiplayerSt.equals("-.") || SeriesMUltiplayerSt.equals(" .") || SeriesMUltiplayerSt.equals("+-") || SeriesMUltiplayerSt.equals("-+") || SeriesMUltiplayerSt.equals("+-.") || SeriesMUltiplayerSt.equals("-+."))
+        else if(SeriesMUltiplayerSt == null || SeriesMUltiplayerSt.equals("+") || SeriesMUltiplayerSt.equals("-") || SeriesMUltiplayerSt.equals(" ") || SeriesMUltiplayerSt.equals(".") || SeriesMUltiplayerSt.equals("+.") || SeriesMUltiplayerSt.equals("-.") || SeriesMUltiplayerSt.equals(" .") || SeriesMUltiplayerSt.equals("+-") || SeriesMUltiplayerSt.equals("-+") || SeriesMUltiplayerSt.equals("+-.") || SeriesMUltiplayerSt.equals("-+.") || SeriesMUltiplayerSt.equals("") || SeriesMUltiplayerSt.equals(" "))
         {
             Toast.makeText(this, "Enter the Series multiplier/divider", Toast.LENGTH_SHORT).show();
             return;
         }
         else
         {
-            startingint = Integer.parseInt(startingSt);
-            SeriesMultiplayer = Integer.parseInt(SeriesMUltiplayerSt);
+            startingint = Double.parseDouble(startingSt);
+            SeriesMultiplayer = Double.parseDouble(SeriesMUltiplayerSt);
+
             Intent showResult = new Intent(this,resultScreenActivity.class);
             showResult.putExtra("startingNum", startingint);
             showResult.putExtra("SeriesMultiplayer", SeriesMultiplayer);
